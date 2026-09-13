@@ -1,0 +1,477 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BrainRush Quiz</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HOME ================= -->
+
+    <section id="homeScreen" class="screen active">
+
+        <div class="home-container">
+
+            <div class="logo">
+                🧠 Brain<span>Rush</span>
+            </div>
+
+            <p class="tagline">
+                Think fast. Learn more. Become a master.
+            </p>
+
+            <h2>Choose Your Subject</h2>
+
+            <div class="subject-grid">
+
+                <button class="subject-card math"
+                    onclick="selectSubject('Math')">
+
+                    <div class="subject-icon">📐</div>
+
+                    <h3>Math</h3>
+
+                    <p>
+                        Numbers, equations & logic
+                    </p>
+
+                </button>
+
+
+                <button class="subject-card chemistry"
+                    onclick="selectSubject('Chemistry')">
+
+                    <div class="subject-icon">⚗️</div>
+
+                    <h3>Chemistry</h3>
+
+                    <p>
+                        Atoms, reactions & elements
+                    </p>
+
+                </button>
+
+
+                <button class="subject-card biology"
+                    onclick="selectSubject('Biology')">
+
+                    <div class="subject-icon">🧬</div>
+
+                    <h3>Biology</h3>
+
+                    <p>
+                        Cells, life & organisms
+                    </p>
+
+                </button>
+
+
+                <button class="subject-card physics"
+                    onclick="selectSubject('Physics')">
+
+                    <div class="subject-icon">⚡</div>
+
+                    <h3>Physics</h3>
+
+                    <p>
+                        Forces, energy & motion
+                    </p>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DIFFICULTY ================= -->
+
+    <section id="difficultyScreen" class="screen">
+
+        <div class="difficulty-container">
+
+            <button class="top-back" onclick="goHome()">
+                ← Back
+            </button>
+
+            <div class="selected-icon" id="selectedIcon">
+                📐
+            </div>
+
+            <h1 id="selectedSubject">
+                Math
+            </h1>
+
+            <p>
+                Choose your difficulty
+            </p>
+
+
+            <div class="difficulty-grid">
+
+                <button class="difficulty-card easy"
+                    onclick="startQuiz('easy')">
+
+                    <span>🟢</span>
+
+                    <h3>Easy</h3>
+
+                    <small>
+                        10 Questions
+                    </small>
+
+                    <strong>
+                        +10 points
+                    </strong>
+
+                </button>
+
+
+                <button class="difficulty-card medium"
+                    onclick="startQuiz('medium')">
+
+                    <span>🟡</span>
+
+                    <h3>Medium</h3>
+
+                    <small>
+                        10 Questions
+                    </small>
+
+                    <strong>
+                        +20 points
+                    </strong>
+
+                </button>
+
+
+                <button class="difficulty-card hard"
+                    onclick="startQuiz('hard')">
+
+                    <span>🔴</span>
+
+                    <h3>Hard</h3>
+
+                    <small>
+                        10 Questions
+                    </small>
+
+                    <strong>
+                        +30 points
+                    </strong>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUIZ ================= -->
+
+    <section id="quizScreen" class="screen">
+
+        <div class="quiz-container">
+
+            <!-- QUIZ HEADER -->
+
+            <div class="quiz-header">
+
+                <div class="quiz-info">
+
+                    <strong id="quizSubject">
+                        Math
+                    </strong>
+
+                    <span id="questionNumber">
+                        Question 1 / 10
+                    </span>
+
+                </div>
+
+
+                <div class="score-box">
+                    ⭐ <span id="score">0</span>
+                </div>
+
+
+                <div class="streak-box">
+                    🔥 <span id="streak">0</span>
+                </div>
+
+            </div>
+
+
+            <!-- QUIZ CONTROLS -->
+
+            <div class="quiz-controls">
+
+                <button
+                    class="control-btn back"
+                    onclick="confirmBack()">
+
+                    ← Back to Menu
+
+                </button>
+
+
+                <button
+                    class="control-btn finish"
+                    onclick="confirmFinish()">
+
+                    🏁 Finish Quiz
+
+                </button>
+
+            </div>
+
+
+            <!-- TIMER -->
+
+            <div class="timer-area">
+
+                <div class="timer-text">
+
+                    ⏱️
+                    <span id="timer">
+                        15
+                    </span>
+                    seconds
+
+                </div>
+
+
+                <div class="timer-track">
+
+                    <div id="timerProgress"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION -->
+
+            <div class="question-card">
+
+                <div
+                    id="difficultyLabel"
+                    class="difficulty-label">
+
+                    EASY
+
+                </div>
+
+
+                <h1 id="question">
+                    Question goes here
+                </h1>
+
+            </div>
+
+
+            <!-- ANSWERS -->
+
+            <div
+                id="answers"
+                class="answers-grid">
+            </div>
+
+
+            <!-- FEEDBACK -->
+
+            <div
+                id="feedback"
+                class="feedback">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESULT ================= -->
+
+    <section id="resultScreen" class="screen">
+
+        <div class="result-container">
+
+            <div
+                id="resultTrophy"
+                class="result-trophy">
+
+                🏆
+
+            </div>
+
+
+            <h1>
+                Quiz Complete!
+            </h1>
+
+
+            <p id="resultMessage">
+                Great job!
+            </p>
+
+
+            <div class="final-score">
+
+                <span>
+                    FINAL SCORE
+                </span>
+
+                <strong id="finalScore">
+                    0
+                </strong>
+
+                <small>
+                    points
+                </small>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <strong id="correctAnswers">
+                        0
+                    </strong>
+
+                    <span>
+                        Correct
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong id="wrongAnswers">
+                        0
+                    </strong>
+
+                    <span>
+                        Wrong
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong id="accuracy">
+                        0%
+                    </strong>
+
+                    <span>
+                        Accuracy
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- REWARD -->
+
+            <div class="reward-box">
+
+                <span>
+                    YOUR REWARD
+                </span>
+
+                <strong id="reward">
+                    🎖️ Knowledge Rookie
+                </strong>
+
+            </div>
+
+
+            <button
+                class="play-again"
+                onclick="goHome()">
+
+                🔄 Play Again
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CUSTOM CONFIRMATION ================= -->
+
+    <div
+        id="confirmModal"
+        class="modal">
+
+        <div class="modal-box">
+
+            <div
+                id="modalIcon"
+                class="modal-icon">
+
+                ⚠️
+
+            </div>
+
+
+            <h2 id="modalTitle">
+                Are you sure?
+            </h2>
+
+
+            <p id="modalText">
+                Your progress will be lost.
+            </p>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    class="modal-cancel"
+                    onclick="closeModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    id="modalConfirm"
+                    class="modal-confirm">
+
+                    Confirm
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+```
